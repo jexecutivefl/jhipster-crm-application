@@ -1,0 +1,44 @@
+entity Lead {
+	firstName String,
+    lastName String,
+    address1 String,
+    address2 String,
+    city String,
+    state State,
+    zip Integer
+}
+
+entity House{
+    address1 String,
+    address2 String,
+    city String,
+    state State,
+    zip Integer
+}
+
+entity Agent{
+	firstName String,
+    lastName String,
+    address1 String,
+    address2 String,
+    city String,
+    state State,
+    zip Integer
+}
+
+enum State {
+    FLORIDA, GEORGIA, CALIFORNIA
+}
+
+relationship ManyToMany {
+    Lead{house(address1)} to House{lead(lastName)},
+    Lead{refferedAgent(lastName)} to Agent{Lead}
+}
+
+relationship ManyToOne {
+    Lead{refferingAgent(lastName)} to Agent{Lead}
+}
+
+
+
+
